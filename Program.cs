@@ -1,9 +1,8 @@
-using Newtonsoft.Json;
-
-namespace Company;
-
-public record Employee(string Id, string Name);
+using Cson;
 
 var employee = new Employee("user_id", "name");
-var json = JsonConvert.SerializeObject(employee, Formatting.Indented);
+var json = Serializer.SerializeIndented(employee);
 Console.WriteLine(json);
+
+var deserialized = Deserializer.Deserialize<Employee>(json);
+Console.WriteLine($"Id: {deserialized.Id}, Name: {deserialized.Name}");
