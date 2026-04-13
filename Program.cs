@@ -1,28 +1,9 @@
 using Newtonsoft.Json;
 
-namespace Company
-{
-    public class Employee
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
+namespace Company;
 
-        public Employee(string id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-    }
+public record Employee(string Id, string Name);
 
-    class Program
-    {
-        static void Main()
-        {
-            Employee employee = new Employee("user_id", "name");
-
-            string json = JsonConvert.SerializeObject(employee, Formatting.Indented);
-
-            Console.WriteLine(json);
-        }
-    }
-}
+var employee = new Employee("user_id", "name");
+var json = JsonConvert.SerializeObject(employee, Formatting.Indented);
+Console.WriteLine(json);
